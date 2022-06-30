@@ -23,13 +23,11 @@ export function QuickStatsCard({ network, data, maxConnections }: QuickStatsCard
   const totalConnections = data.map(data => data.total);
   const currentCountByCategory = data[data.length - 1];
 
-  const regression: any = useRegression(data);
-  console.log('regression', regression);
-  
-  
+  const regression: 'ascending' | 'descending' | 'constant' = useRegression(data);
+ 
   if (!currentCountByCategory) return <QuickStatsCardSkeleton />;
 
-  const logoContainerClass = classNames(NetworkHelper[network].background, 'bg-teal-500/10 w-full h-20 md:h-full md:w-72 p-4 flex items-center justify-center md:rounded-l md:rounded-tr-none rounded-t text-white');
+  const logoContainerClass = classNames(NetworkHelper[network].background, 'w-full h-20 md:h-full md:w-72 p-4 flex items-center justify-center md:rounded-l md:rounded-tr-none rounded-t text-white');
 
   return (
     <div className="w-full md:h-48 h-auto rounded bg-[#222830] flex flex-col md:flex-row items-center justify-between">
